@@ -339,11 +339,11 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "_newBackend",
+						"name": "_newAddress",
 						"type": "address"
 					}
 				],
-				"name": "setAuthorizedBackend",
+				"name": "setAuthorizedAddres",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -478,11 +478,11 @@
 			]
 		},
 		"referralSystem.sol": {
-			"keccak256": "0x08e0ccf02ae709fdda85fc485df26cf259c487d0d113c45fc7b7fcda8d5b29d1",
+			"keccak256": "0x136843a6448868d3468ed7f592b32f742d75fe3e0b7c3c8b61e399b4d3cd28a2",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://138b966bf60fd1e97c92bd718e5b7db35b7e13c09e31dc14d873b490574958de",
-				"dweb:/ipfs/QmQEtAuGjUEQ5pqaDRjJH7ttkS7NHz4rLqLaoSdU8wsmzU"
+				"bzz-raw://a66b540935a38f92a066122debc42ee348601e51328b76b4acd1a2fe0f1ee858",
+				"dweb:/ipfs/QmcedEfM2YR3SiReZXoM4y5RwpuqdYDQDAFfhxjdZe6jFx"
 			]
 		}
 	},

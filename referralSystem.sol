@@ -43,10 +43,10 @@ contract ReferralRewards is Ownable {
     }
     
 
-    function setAuthorizedBackend(address _newBackend) external onlyOwner {
-        require(_newBackend != address(0), "Invalid address");
-        emit AuthorizedBackendChanged(authorizedAddress, _newBackend);
-        authorizedAddress = _newBackend;
+    function setAuthorizedAddres(address _newAddress) external onlyOwner {
+        require(_newAddress != address(0), "Invalid address");
+        emit AuthorizedBackendChanged(authorizedAddress, _newAddress);
+        authorizedAddress = _newAddress;
     }
     
     
