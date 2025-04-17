@@ -48,7 +48,7 @@
 						"type": "address"
 					}
 				],
-				"name": "AuthorizedBackendChanged",
+				"name": "AuthorizedAddressChanged",
 				"type": "event"
 			},
 			{
@@ -232,12 +232,12 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "_referee",
+						"name": "_referrer",
 						"type": "address"
 					},
 					{
 						"internalType": "address",
-						"name": "_referrer",
+						"name": "_referee",
 						"type": "address"
 					}
 				],
@@ -478,11 +478,11 @@
 			]
 		},
 		"referralSystem.sol": {
-			"keccak256": "0x136843a6448868d3468ed7f592b32f742d75fe3e0b7c3c8b61e399b4d3cd28a2",
+			"keccak256": "0x0c10f094d1f60ba651d4776ac5f7d58596b5eaab89f679782d16877278b69790",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a66b540935a38f92a066122debc42ee348601e51328b76b4acd1a2fe0f1ee858",
-				"dweb:/ipfs/QmcedEfM2YR3SiReZXoM4y5RwpuqdYDQDAFfhxjdZe6jFx"
+				"bzz-raw://fabb63d81a7a6e31bfe45b5b0c4dda9770df73b32c2d865cb645cd265b38b089",
+				"dweb:/ipfs/QmTH3HLJKLphxbXxvj3F8BUwa23fWW2VY5XGC1V4ZPmpqS"
 			]
 		}
 	},

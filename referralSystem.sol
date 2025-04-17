@@ -27,7 +27,7 @@ contract ReferralRewards is Ownable {
     // Events
     event ReferralRegistered(address indexed referrer, address indexed referee, uint256 timestamp);
     event RewardsDistributed(address indexed referrer, address indexed referee, uint256 referrerAmount, uint256 refereeAmount);
-    event AuthorizedBackendChanged(address indexed previousBackend, address indexed newBackend);
+    event AuthorizedAddressChanged(address indexed previousBackend, address indexed newBackend);
     event RewardAmountsChanged(uint256 newReferrerReward, uint256 newRefereeReward);
     
     
@@ -45,7 +45,7 @@ contract ReferralRewards is Ownable {
 
     function setAuthorizedAddres(address _newAddress) external onlyOwner {
         require(_newAddress != address(0), "Invalid address");
-        emit AuthorizedBackendChanged(authorizedAddress, _newAddress);
+        emit AuthorizedAddressChanged(authorizedAddress, _newAddress);
         authorizedAddress = _newAddress;
     }
     
@@ -57,7 +57,7 @@ contract ReferralRewards is Ownable {
     }
     
 
-    function processReferral(address _referee, address _referrer) external onlyAuthorizedAddress {
+    function processReferral(address _referrer,address _referee) external onlyAuthorizedAddress {
         // Validate addresses
         require(_referee != address(0) && _referrer != address(0), "Invalid address");
         
@@ -105,7 +105,7 @@ contract RewardToken is ERC20, Ownable {
     
     
     constructor() ERC20("Referral Reward", "RFR") Ownable(msg.sender) {
-        minter = msg.sender; // Initially set to the deployer (will be the ReferralRewards contract)
+        minter = msg.sender; // Initially set to the deployer
     }
   
     modifier onlyMinter() {
