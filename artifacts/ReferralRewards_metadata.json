@@ -478,11 +478,11 @@
 			]
 		},
 		"referralSystem.sol": {
-			"keccak256": "0x0c10f094d1f60ba651d4776ac5f7d58596b5eaab89f679782d16877278b69790",
+			"keccak256": "0xf9319aa71e2d2fee911baf4132115f25aad0b27cba3e7cad646109566ed77790",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://fabb63d81a7a6e31bfe45b5b0c4dda9770df73b32c2d865cb645cd265b38b089",
-				"dweb:/ipfs/QmTH3HLJKLphxbXxvj3F8BUwa23fWW2VY5XGC1V4ZPmpqS"
+				"bzz-raw://6eacdefad648fd5ec156ecbd60ccf7f39e0c86c07dcee7d605711c34faa03525",
+				"dweb:/ipfs/QmYez2LJ9KcmMBE2rfmmLoSfCf6n9ehsTEkaopv1uRVKPU"
 			]
 		}
 	},
