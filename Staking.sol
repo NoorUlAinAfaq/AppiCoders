@@ -29,7 +29,8 @@ contract StakingWithNFT is Ownable {
     // Fixed rewards rate - 10% APR
     uint256 public constant REWARD_RATE = 10;
     uint256 public constant REWARD_RATE_DENOMINATOR = 100;
-    uint256 public constant SECONDS_IN_YEAR = 365 days;
+  //  uint256 public constant SECONDS_IN_YEAR = 365 days;
+    uint256 public constant SECONDS_IN_YEAR = 5 seconds;
     
     // Staker information
     struct StakerInfo {
@@ -42,7 +43,9 @@ contract StakingWithNFT is Ownable {
     }
     
     // Mapping from staker address to their info
-    mapping(address => StakerInfo) public stakerInfo;
+    mapping(address => StakerInfo) private stakerInfo;
+    // mapping to track if a user has an LP token
+    mapping(address => bool) public hasLPToken;
     
     // Events
     event Staked(address indexed user, uint256 amount);
@@ -54,8 +57,8 @@ contract StakingWithNFT is Ownable {
     
     constructor(address _stakingToken) Ownable(msg.sender) {
         stakingToken = IERC20(_stakingToken);
-        lpToken = new LPToken();
-        achievementBadge = new AchievementBadge();
+        lpToken = new LPToken(address(this));
+        achievementBadge = new AchievementBadge(address(this));
     }
     
     // User stakes tokens
@@ -72,12 +75,12 @@ contract StakingWithNFT is Ownable {
         stakerInfo[msg.sender].stakedAmount += amount;
         
         // If first time staking, mint LP NFT
-        if (!stakerInfo[msg.sender].hasStaked) {
-            stakerInfo[msg.sender].hasStaked = true;
-            uint256 tokenId = lpToken.mint(msg.sender);
-            emit LPTokenMinted(msg.sender, tokenId);
+        if (!stakerInfo[msg.sender].hasStaked && !hasLPToken[msg.sender]) {
+        stakerInfo[msg.sender].hasStaked = true;
+        uint256 tokenId = lpToken.mint(msg.sender);
+        hasLPToken[msg.sender] = true;
+        emit LPTokenMinted(msg.sender, tokenId);
         }
-        
         // Update LP token metadata
         _updateLPTokenMetadata(msg.sender);
         
@@ -190,8 +193,7 @@ contract StakingWithNFT is Ownable {
     // Update LP token metadata
     function _updateLPTokenMetadata(address user) internal {
         StakerInfo storage staker = stakerInfo[user];
-        if (!staker.hasStaked) return;
-        
+        if (!staker.hasStaked || !hasLPToken[user]) return;
         // Find the LP token ID for this user (assuming 1 LP token per user)
         uint256 tokenId = lpToken.tokenOfOwnerByIndex(user, 0);
         
@@ -245,6 +247,22 @@ contract StakingWithNFT is Ownable {
             _calculatePendingRewards(user)
         );
     }
+
+    function viewTokenURI(uint256 tokenId) external view returns (string memory) {
+    return lpToken.tokenURI(tokenId);
+}
+
+// Add a function to get a user's token ID
+function getUserTokenId(address user) external view returns (uint256) {
+    require(stakerInfo[user].hasStaked, "User has not staked");
+    
+    // Find the LP token ID for this user (assuming 1 LP token per user)
+    try lpToken.tokenOfOwnerByIndex(user, 0) returns (uint256 tokenId) {
+        return tokenId;
+    } catch {
+        revert("User has no LP token");
+    }
+}
 }
 
 // LP Token as NFT
@@ -253,35 +271,39 @@ contract LPToken is ERC721URIStorage {
 
     uint256 private _tokenIdCounter;
     address public stakingContract;
-    bool private stakingContractSet = false;
+    
     
     // Mapping to track tokens owned by each address
     mapping(address => uint256[]) private _tokensOfOwner;
+    mapping(address => bool) public hasToken;
+    mapping(address => uint256) public userToTokenId;
     
-    constructor() ERC721("Staking LP Token", "SLPT") {}
-    
-    function setStakingContract(address _stakingContract) external {
-        require(!stakingContractSet, "Staking contract already set");
-        require(_stakingContract != address(0), "Invalid staking contract");
-        stakingContract = _stakingContract;
-        stakingContractSet = true;
-    }
+    constructor(address _stakingContract) ERC721("Staking LP Token", "SLPT") {
+    stakingContract = _stakingContract;
+}
     
     modifier onlyStakingContract() {
         require(msg.sender == stakingContract, "Only staking contract");
-        require(stakingContractSet, "Staking contract not set");
+      
         _;
     }
     function mint(address to) external onlyStakingContract returns (uint256) {
+        require(!hasToken[to], "User already has an LP token");
         uint256 tokenId = _tokenIdCounter;
         _tokenIdCounter++;
         
         _safeMint(to, tokenId);
         _tokensOfOwner[to].push(tokenId);
+        hasToken[to] = true;
+        userToTokenId[to] = tokenId;
         
         return tokenId;
     }
     
+    function getTokenIdForUser(address user) public view returns (uint256) {
+    require(hasToken[user], "User has no LP token");
+    return userToTokenId[user];
+    }
     function setTokenURI(uint256 tokenId, string memory uri) external onlyStakingContract {
         _setTokenURI(tokenId, uri);
     }
@@ -340,8 +362,10 @@ contract AchievementBadge is ERC721URIStorage {
     // Tier names
     string[] public tierNames = ["Bronze", "Silver", "Gold"];
     
-    constructor() ERC721("Staking Achievement Badge", "SAB") {
-        stakingContract = msg.sender;
+
+    constructor(address _stakingContract) ERC721("Staking Achievement Badge", "SAB") {
+    stakingContract = _stakingContract;
+
     }
     
     modifier onlyStakingContract() {

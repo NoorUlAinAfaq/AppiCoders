@@ -285,10 +285,48 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getUserTokenId",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "harvestRewards",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "hasLPToken",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -357,50 +395,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "stakerInfo",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "stakedAmount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "lastUpdateTime",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "timeWeightedScore",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "rewardsEarned",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "currentTier",
-						"type": "uint256"
-					},
-					{
-						"internalType": "bool",
-						"name": "hasStaked",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "stakingToken",
 				"outputs": [
@@ -462,6 +456,25 @@
 				"name": "transferOwnership",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "viewTokenURI",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -725,11 +738,11 @@
 			]
 		},
 		"Staking.sol": {
-			"keccak256": "0xb9cc0c0a1454e1f2bf447fe9a8697276dd22734841d03fe8a872e9842a8f70e6",
+			"keccak256": "0x7ce31ed29d3a73113723e4c8ee6e13ffe86889cfc8fafe3391abde90c2736e9a",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d7ddf999001764cafea5496df48ff15bb979465f2304b8b849d64bec38d1d930",
-				"dweb:/ipfs/QmXzvSPU4zn4j3ZadfT7QaDv3QPoQ4VAPVKzxwn9WQFMSu"
+				"bzz-raw://00733eb1067247b12dd9d71e07ad38358992f2698c2fde3a0e1d06e0af7d298c",
+				"dweb:/ipfs/QmUdtKkeo1w6wnLApYNgMVDVpFXe5VQVr44FYeayu38utU"
 			]
 		}
 	},

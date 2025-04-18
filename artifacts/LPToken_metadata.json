@@ -6,7 +6,13 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_stakingContract",
+						"type": "address"
+					}
+				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
@@ -280,6 +286,44 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getTokenIdForUser",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "hasToken",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
 						"name": "owner",
 						"type": "address"
 					},
@@ -416,19 +460,6 @@
 					}
 				],
 				"name": "setApprovalForAll",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_stakingContract",
-						"type": "address"
-					}
-				],
-				"name": "setStakingContract",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -579,6 +610,25 @@
 				"name": "transferFrom",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "userToTokenId",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			}
 		],
@@ -928,11 +978,11 @@
 			]
 		},
 		"Staking.sol": {
-			"keccak256": "0xb9cc0c0a1454e1f2bf447fe9a8697276dd22734841d03fe8a872e9842a8f70e6",
+			"keccak256": "0x7ce31ed29d3a73113723e4c8ee6e13ffe86889cfc8fafe3391abde90c2736e9a",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d7ddf999001764cafea5496df48ff15bb979465f2304b8b849d64bec38d1d930",
-				"dweb:/ipfs/QmXzvSPU4zn4j3ZadfT7QaDv3QPoQ4VAPVKzxwn9WQFMSu"
+				"bzz-raw://00733eb1067247b12dd9d71e07ad38358992f2698c2fde3a0e1d06e0af7d298c",
+				"dweb:/ipfs/QmUdtKkeo1w6wnLApYNgMVDVpFXe5VQVr44FYeayu38utU"
 			]
 		}
 	},
