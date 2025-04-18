@@ -738,11 +738,11 @@
 			]
 		},
 		"Staking.sol": {
-			"keccak256": "0x7ce31ed29d3a73113723e4c8ee6e13ffe86889cfc8fafe3391abde90c2736e9a",
+			"keccak256": "0xf2b39e71bb72b03d5f74d8f571d62a254c5fc8ad229f161da15eaf8dc9c2f782",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://00733eb1067247b12dd9d71e07ad38358992f2698c2fde3a0e1d06e0af7d298c",
-				"dweb:/ipfs/QmUdtKkeo1w6wnLApYNgMVDVpFXe5VQVr44FYeayu38utU"
+				"bzz-raw://566623a34e4833dc581ece20c5192fb590847e4fe21d4d5610a6a10c85b7c371",
+				"dweb:/ipfs/QmbuzmQwGUSo4EiFmZEdkqKb7PVrMXRsQNHCh1Tr5nLzwS"
 			]
 		}
 	},

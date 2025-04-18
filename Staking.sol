@@ -110,13 +110,14 @@ contract StakingWithNFT is Ownable {
     
     // Harvest rewards (calculated but not transferred yet)
     function harvestRewards() external {
-        // Update rewards first
-        _updateRewards(msg.sender);
         
         StakerInfo storage staker = stakerInfo[msg.sender];
         uint256 rewards = _calculatePendingRewards(msg.sender);
         require(rewards > 0, "No rewards to harvest");
-        
+          uint256 timeElapsed = block.timestamp - staker.lastUpdateTime;
+         if (staker.stakedAmount > 0 && timeElapsed > 0) {
+        staker.timeWeightedScore += staker.stakedAmount * timeElapsed;
+        }
         // Reset last update time to now
         staker.lastUpdateTime = block.timestamp;
         
