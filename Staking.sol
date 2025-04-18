@@ -253,19 +253,25 @@ contract LPToken is ERC721URIStorage {
 
     uint256 private _tokenIdCounter;
     address public stakingContract;
+    bool private stakingContractSet = false;
     
     // Mapping to track tokens owned by each address
     mapping(address => uint256[]) private _tokensOfOwner;
     
-    constructor() ERC721("Staking LP Token", "SLPT") {
-        stakingContract = msg.sender;
+    constructor() ERC721("Staking LP Token", "SLPT") {}
+    
+    function setStakingContract(address _stakingContract) external {
+        require(!stakingContractSet, "Staking contract already set");
+        require(_stakingContract != address(0), "Invalid staking contract");
+        stakingContract = _stakingContract;
+        stakingContractSet = true;
     }
     
     modifier onlyStakingContract() {
         require(msg.sender == stakingContract, "Only staking contract");
+        require(stakingContractSet, "Staking contract not set");
         _;
     }
-    
     function mint(address to) external onlyStakingContract returns (uint256) {
         uint256 tokenId = _tokenIdCounter;
         _tokenIdCounter++;
